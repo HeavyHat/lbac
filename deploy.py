@@ -30,12 +30,12 @@ for slot in slot_yaml:
         try:
             slotdef = yaml.load(stream)
         except yaml.YAMLError as exc:
-            print exc
+            print(exc)
     try:
         slotdef_aws = lex.get_slot_type(name=slotdef["name"], version="$LATEST")
         slotdef["checksum"] = slotdef_aws["checksum"]
     except Exception as e:
-        print e
+        print(e)
     lex.put_slot_type(**slotdef)
 
 
@@ -57,10 +57,10 @@ for lambdafile in lambda_yaml:
         try:
             lambdadef = yaml.load(stream)
         except yaml.YAMLError as exc:
-            print exc
+            print(exc)
     try:
         lamdadef_aws = lambdaaws.get_function(FunctionName=lambdadef["FunctionName"])
-        print "do lambda update"
+        print("do lambda update")
         shutil.make_archive("%s" % lambdadef["FunctionName"], 'zip', "code")
         del lambdadef["Code"]["file"]
         lambdaaws.update_function_code(
@@ -70,7 +70,7 @@ for lambdafile in lambda_yaml:
             DryRun=False
         )
     except Exception as e:
-        print "do lambda create"
+        print("do lambda create")
         shutil.make_archive("%s" %lambdadef["FunctionName"], 'zip', "code")
         del lambdadef["Code"]["file"]
         lambdadef["Code"]["ZipFile"] = open("%s.zip" %lambdadef["FunctionName"], 'rb').read()
@@ -100,12 +100,12 @@ for intent in intent_yaml:
         try:
             intentdef = yaml.load(stream)
         except yaml.YAMLError as exc:
-            print exc
+            print(exc)
     try:
         intentdef_aws = lex.get_intent(name=intentdef["name"], version="$LATEST")
         intentdef["checksum"] = intentdef_aws["checksum"]
     except Exception as e:
-        print e
+        print(e)
     lex.put_intent(**intentdef)
 
 
@@ -124,10 +124,10 @@ for bot in bot_yaml:
         try:
             botdef = yaml.load(stream)
         except yaml.YAMLError as exc:
-            print exc
+            print(exc)
     try:
         botdef_aws = lex.get_bot(name=botdef["name"], versionOrAlias="$LATEST")
         botdef["checksum"] = botdef_aws["checksum"]
     except Exception as e:
-        print e
+        print(e)
     lex.put_bot(**botdef)

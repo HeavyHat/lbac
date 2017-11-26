@@ -1,6 +1,6 @@
 FunctionName: "SayHello"
 Runtime: "python2.7" #'nodejs'|'nodejs4.3'|'nodejs6.10'|'java8'|'python2.7'|'python3.6'|'dotnetcore1.0'|'nodejs4.3-edge'
-Role: "arn:aws:iam::878047780435:role/service-role/LexLambda"
+Role: "arn:aws:iam::665914774896:role/service-role/LexLambda"
 Handler: "sayhello.execute"
 Code: 
     file: "sayhello.py"
