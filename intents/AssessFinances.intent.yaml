@@ -1,0 +1,51 @@
+name: "AssessFinances"
+description: "Bot that tells you where to save some $$$"
+slots:
+    - name: "Name"
+      description: "The supplied name"
+      slotConstraint: "Required"
+      slotType: "Name"
+      slotTypeVersion: "$LATEST"
+      valueElicitationPrompt:
+          messages:
+              - contentType: "PlainText" #SSML
+                content: "With whom do I have the pleasure of speaking?"
+          maxAttempts: 2
+      sampleUtterances:
+          - "My name is {Name}"
+          - "Im {Name}"
+sampleUtterances:
+    - "save money"
+    - "assess finance"
+    - "low on cash"
+#confirmationPrompt:
+#    messages:
+#          - contentType: "PlainText"
+#            content: "Say hello?"
+#    maxAttempts: 2
+#rejectionStatement:
+#    messages:
+#          - contentType: "PlainText"
+#            content: "Okay I wont say hello"
+#followUpPrompt:
+#    prompt:
+#        messages:
+#          - contentType: "PlainText"
+#            content: "Sorry this isnt working"
+#        maxAttempts: 2
+#    rejectionStatement:
+#        messages:
+#            - contentType: "PlainText"
+#              content: "Sorry this isnt working"
+#conclusionStatement:
+#    messages:
+#        - contentType: "PlainText"
+#          content: "Sorry this isnt working"
+#dialogCodeHook:
+#    uri: 'arn:aws:lambda:us-west-2:account-id:function:hello:DEV'
+#    messageVersion:
+fulfillmentActivity:
+    type: 'CodeHook'
+    codeHook:
+        uri: 'arn:aws:lambda:eu-west-1:665914774896:function:SayHello'
+        messageVersion: "1.0"

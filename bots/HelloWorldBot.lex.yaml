@@ -3,8 +3,8 @@ description: "A Hello World Bot"
 intents:
     - intentName: "HelloWorld"
       intentVersion: "$LATEST"
-#    - intentName: "goodbye"
-#      intentVersion: 1
+    - intentName: "AssessFinances"
+      intentVersion: "$LATEST"
 clarificationPrompt:
     messages:
         - contentType: 'PlainText'

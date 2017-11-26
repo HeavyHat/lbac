@@ -100,7 +100,7 @@ def say_hello(intent_request):
     """
     slots = intent_request['currentIntent']['slots']
     hiname = slots['Name']
-    # confirmation_status = intent_request['currentIntent']['confirmationStatus']
+    #confirmation_status = intent_request['currentIntent']['confirmationStatus']
     ##session_attributes = intent_request['sessionAttributes'] if intent_request['sessionAttributes'] is not None else {}
 
     return close(
@@ -109,6 +109,18 @@ def say_hello(intent_request):
         {
             'contentType': 'PlainText',
             'content': "I am a Lex Chatbot. Hello %s" %hiname
+        }
+    )
+
+def assess_finances(intent_request):
+    slots = intent_request['currentIntent']['slots']
+    hiname = slots['Name']
+    return close(
+        {},
+        'Fulfilled',
+        {
+            'contentType': 'PlainText',
+            'content': "Sorry %s, your finances are fucked." % hiname
         }
     )
 
@@ -125,6 +137,8 @@ def dispatch(intent_request):
     intent_name = intent_request['currentIntent']['name']
     if intent_name == 'HelloWorld':
         return say_hello(intent_request)
+    elif intent_name == 'AssessFinances':
+        return assess_finances(intent_request)
 
     raise Exception('Intent with name ' + intent_name + ' not supported')
 
