@@ -2,7 +2,6 @@ import os
 import boto3
 import yaml
 import fnmatch
-import base64
 import shutil
 
 """

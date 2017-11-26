@@ -15,5 +15,5 @@ abortStatement:
         - contentType: 'PlainText'
           content: "I do not understand, please reword your query."
 idleSessionTTLInSeconds: 123
-locale: 'en-GB'
+locale: 'en-US'
 childDirected: False
