@@ -1,5 +1,5 @@
 FunctionName: "SayHello"
-Runtime: "python2.7" #'nodejs'|'nodejs4.3'|'nodejs6.10'|'java8'|'python2.7'|'python3.6'|'dotnetcore1.0'|'nodejs4.3-edge'
+Runtime: "python2.7"
 Role: "arn:aws:iam::665914774896:role/LexLambda"
 Handler: "sayhello.execute"
 Code: 
@@ -10,7 +10,7 @@ Code:
 #  'S3ObjectVersion': 'string'
 Description: "A lambda function to say hello to the provided name"
 Timeout: 3
-MemorySize: 128
+MemorySize: 512
 Publish: True
 #VpcConfig:
 #    SubnetIds:

@@ -61,17 +61,17 @@ for lambdafile in lambda_yaml:
         lamdadef_aws = lambdaaws.get_function(FunctionName=lambdadef["FunctionName"])
         print("do lambda update")
         shutil.make_archive("%s" % lambdadef["FunctionName"], 'zip', "code")
-        del lambdadef["Code"]["file"]
+        # del lambdadef["Code"]["file"]
         lambdaaws.update_function_code(
             FunctionName=lambdadef["FunctionName"],
             ZipFile=open("%s.zip" %lambdadef["FunctionName"], 'rb').read(),
-            Publish=False,
+            Publish=True,
             DryRun=False
         )
     except Exception as e:
         print("do lambda create")
         shutil.make_archive("%s" %lambdadef["FunctionName"], 'zip', "code")
-        del lambdadef["Code"]["file"]
+        # del lambdadef["Code"]["file"]
         lambdadef["Code"]["ZipFile"] = open("%s.zip" %lambdadef["FunctionName"], 'rb').read()
         lambdaaws.create_function(**lambdadef)
 

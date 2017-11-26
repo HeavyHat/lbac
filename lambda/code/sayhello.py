@@ -11,6 +11,8 @@ visit the Lex Getting Started documentation http://docs.aws.amazon.com/lex/lates
 import time
 import os
 import logging
+import boto3
+import csv
 
 logger = logging.getLogger()
 logger.setLevel(logging.DEBUG)
@@ -115,6 +117,10 @@ def say_hello(intent_request):
 def assess_finances(intent_request):
     slots = intent_request['currentIntent']['slots']
     hiname = slots['Name']
+    s3 = boto3.client('s3')
+    s3_object = s3.get_object(Bucket='finance-josh-sami', Key='MonzoDataExport_AllSpending_2017-11-25_191744.csv')
+    lines = s3_object[u'Body'].read().split()
+    logger.debug(lines)
     return close(
         {},
         'Fulfilled',
